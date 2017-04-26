@@ -90,7 +90,8 @@ class Spider {
         try {
             $this->pipe->run($this, $task);
         } catch (\Exception $e) {
-            $task->fail($e);
+		$task->fail($e);
+
         }
         if ($task->getStatus() === Task::STATUS_WORKING) {
             $task->done();
