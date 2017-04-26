@@ -6,6 +6,7 @@ use ddliu\spider\Spider;
 use ddliu\spider\Pipe\NormalizeUrlPipe;
 use ddliu\spider\Pipe\RequestPipe;
 use ddliu\spider\Pipe\DomCrawlerPipe;
+use ddliu\spider\Pipe\checkUriPipe;
 
 $spiderx =(new Spider())
     ->pipe(new NormalizeUrlPipe())

@@ -17,8 +17,10 @@
         "ddliu/wildcards": "0.1.*"
     },
     "autoload": {
+	
         "psr-4": {
             "ddliu\\spider\\": "src/"
-        }
+        },
+	 "files": ["examples/checkUriPipe.php"]
     }
 }

@@ -1,4 +1,6 @@
 <?php
+
+//use ddliu\spider\Pipe\BasePipe;
 namespace ddliu\spider\Pipe;
 
 class checkUriPipe extends BasePipe {
@@ -10,7 +12,7 @@ class checkUriPipe extends BasePipe {
 
 		$this->result_err[]=$this->_task['url'];
 
-		$spider->logger->addError($e->getMessage(());
+		$spider->logger->addError($e->getMessage());
 	}
 	private $_task;
 	function run($spider, $task) {
