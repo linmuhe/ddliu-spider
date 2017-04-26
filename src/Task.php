@@ -102,4 +102,7 @@ class Task implements \ArrayAccess {
         $task->parent = $this;
         $this->spider->addTask($task);
     }
+    public function getData(){
+    	return $this->data;
+    }
 }

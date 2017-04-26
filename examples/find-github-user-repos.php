@@ -11,10 +11,14 @@ use ddliu\spider\Pipe\DomCrawlerPipe;
     ->pipe(new RequestPipe())
     ->pipe(new DomCrawlerPipe())
     ->pipe(function($spider, $task) {
+	var_dump(array_keys($task->getData()));
+        //$spider->logger->addInfo($task['url']."-pipe\n");
         if (!strpos($task['url'], 'tab=repositories')) return;
         $task['$dom']->filter('h3.repo-list-name>a')
             ->each(function($context) use ($task) {
-                $url = $context->attr('href');
+		    $url = $context->attr('href');
+		   
+        $spider->logger->addInfo($url.' frok');
                 $task->fork($url);
             });
     })
