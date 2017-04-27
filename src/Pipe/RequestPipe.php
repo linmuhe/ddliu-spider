@@ -40,8 +40,10 @@ class RequestPipe extends BasePipe {
         curl_setopt_array($curl, [
             CURLOPT_URL => $task['url'],
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_SSL_VERIFYHOST=>2,
-        CURLOPT_SSL_VERIFYPEER=>false,
+            CURLOPT_SSL_VERIFYHOST=>2,//support ssl
+        CURLOPT_SSL_VERIFYPEER=>false,//support ssl
+            CURLOPT_HEADER=>true ,
+            CURLOPT_FOLLOWLOCATION=>true ,//support 301 302 
             CURLOPT_USERAGENT => $this->options['useragent'],
             CURLOPT_TIMEOUT => isset($this->options['timeout'])?$this->options['timeout']:0,
         ]);
