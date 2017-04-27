@@ -64,7 +64,7 @@ class RequestPipe extends BasePipe {
         $errno = curl_errno($curl);
         if ($errno) {
             $err = curl_error($curl);
-            throw new \Exception('Request failed: #'.$errno.' '.$err,$errno,$err);
+            throw new \Exception('Request failed: #'.$errno.' '.$err);
         }
 
         $info = curl_getinfo($curl);
