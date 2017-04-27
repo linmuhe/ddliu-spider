@@ -1,16 +1,26 @@
 <?php
 
-//use ddliu\spider\Pipe\BasePipe;
+use ddliu\spider\Pipe\BasePipe;
 namespace ddliu\spider\Pipe;
 
 class checkUriPipe extends BasePipe {
-	private $result_succ=array();
-	private $result_err=array();
+	public static $result_succ=array();
+	public static $result_err=array();
 	function done(){
+	}
+	public static function repeat($spider){
+
+		$spider->logger->addInfo("succ::");
+		while(!empty($stro=array_pop(self::$result_succ)))
+		$spider->logger->addInfo($stro);
+
+		$spider->logger->addInfo("cant reuquest::");
+		while(!empty($stro=array_pop(self::$result_err)))
+		$spider->logger->addInfo($stro);
 	}
 	function fail(\Exception $e){
 
-		$this->result_err[]=$this->_task['url'];
+		self::$result_err[]=$this->_task['url'];
 
 		$spider->logger->addError($e->getMessage());
 	}
@@ -29,16 +39,16 @@ class checkUriPipe extends BasePipe {
 			$url=$task['url'];
 	//		echo get_class($content)."\n";
 			$title=$content->text();
-			$this->result_succ[]="{$title} --- {$url}";
-			$spider->logger->addInfo("{$title} --- {$url} --- is from ---".$task->parent['url']);
+			self::$result_succ[]="{$title} --- {$url}";
+			$spider->logger->addInfo("{$title} --- {$url} --- is okay ,from ---".$task->parent['url']);
 		});
 	}else{
 		//match a.attr 
         	$task['$dom']->filter('a')
-           	 ->each(function($context) use ($spider,$task) {
+           	 ->each(function($context) use($spider,$task) {
 		    $url = $context->attr('href');
-		    $title="";
-		    $spider->logger->addInfo("find new url ".$url." ---from--- ".$task['url']);
+		    $title=$context->text();
+		    $spider->logger->addInfo("find {$title} --- ".$url." ");
 		
 		    $task->fork($url);
            	 });

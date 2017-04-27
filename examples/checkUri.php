@@ -20,7 +20,9 @@ $spiderx->pipe(new checkUriPipe());
      *     $spider->logger->addInfo($task['url'].' has '.$issueCount.' commits');
      * })
      */
- $spiderx ->addTask('http://yyliu.top') ;
+$spiderx ->addTask('http://yyliu.top') ;
 
-$spiderx->run() ->report();
+$spiderx->run();
+checkUriPipe::repeat($spider);
+$spiderx->report();
 
