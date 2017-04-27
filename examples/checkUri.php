@@ -27,6 +27,6 @@ try{
 }catch(\Exception $e){
 echo $e->getMessage()."\n";
 }
-checkUriPipe::repeat($spider);
+checkUriPipe::repeat($spiderx);
 $spiderx->report();
 

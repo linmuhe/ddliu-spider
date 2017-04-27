@@ -40,8 +40,10 @@ class Spider {
     public function setLogger($logger) {
         $this->logger = $logger;
         return $this;
+    } 
+    public function clearTask(){
+    	$this->tasks=[];
     }
-
     public function addTask($data) {
         if (!$data instanceof Task) {
             $task = new Task($data);

@@ -9,24 +9,23 @@ class checkUriPipe extends BasePipe {
 	function done(){
 	}
 	public static function repeat($spider){
-
 		$spider->logger->addInfo("succ::");
 		while(!empty($stro=array_pop(self::$result_succ)))
 		$spider->logger->addInfo($stro);
 
 		$spider->logger->addInfo("cant reuquest::");
-		while(!empty($stro=array_pop(self::$result_err)))
-		$spider->logger->addInfo($stro);
+		while(!empty($stre=array_pop(self::$result_err)))
+		$spider->logger->addInfo($stre);
 	}
-	function fail(\Exception $e){
+	function fail($spider,$task,\Exception $e){
 
-		self::$result_err[]=$this->_task['url'];
-
-		$spider->logger->addError($e->getMessage());
+		self::$result_err[]=$task['url'];
+		return true ;
+		//$spider->logger->addError($e->getMessage());
 	}
-	private $_task;
+	//private $_task;
 	function run($spider, $task) {
-		$this->_task=$task ;
+	//	$this->_task=$task ;
 	
 		/*
 	 * var_dump(array_keys($task->getData()));

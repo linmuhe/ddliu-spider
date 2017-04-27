@@ -31,8 +31,24 @@ class CombinedPipe extends BasePipe {
             if ($task->isEnded()) {
                 break;
             }
-
-            $pipe->run($spider, $task);
+	     try{
+            	$pipe->run($spider, $task);
+	     }catch(\Exception $e){     	
+		$echoe=true;     
+		 if(method_exists($pipe,'fail')){
+			$echoe = $pipe->fail($spider,$task,$e);	
+		 }
+		if($echoe ){
+			$task->putExce($e);
+		}
+//	     }
         }
+  	 if(false!==($fire=$task->isExce())){
+		  // is false or first exce
+		  throw $fire ;
+	  }
+	//bug if exception ,after linked-pipe will not run ;
+	
+
     }
 }

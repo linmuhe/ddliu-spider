@@ -21,7 +21,16 @@ class Task implements \ArrayAccess {
     protected $data;
     public $parent;
     public $spider;
-
+    protected $exces=[];//exception from pipe ;
+    function putExce($e){
+    	$this->exces[]=$e ;
+    }
+    function isExce(){
+	    if(0==count($this->exces)){
+	    	return false ;
+	    }
+	    return $this->exces[0];
+    }
     public function __construct($data) {
         if (is_string($data)) {
             $data = array(
