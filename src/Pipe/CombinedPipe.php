@@ -31,17 +31,20 @@ class CombinedPipe extends BasePipe {
             if ($task->isEnded()) {
                 break;
             }
-	     try{
+	    try{
+		   // echo "fail ".get_class($pipe) ."-".method_exists($pipe,'fail')==true."\n";
             	$pipe->run($spider, $task);
-	     }catch(\Exception $e){     	
-		$echoe=true;     
-		 if(method_exists($pipe,'fail')){
+	    }catch(\Exception $e){     
+		    var_dump($pipe);exit;
+	         $echoe=true; 
+	       	if(method_exists($pipe,'fail')){
+			die("xxxxxxx");
 			$echoe = $pipe->fail($spider,$task,$e);	
 		 }
 		if($echoe ){
 			$task->putExce($e);
 		}
-//	     }
+	     }
         }
   	 if(false!==($fire=$task->isExce())){
 		  // is false or first exce

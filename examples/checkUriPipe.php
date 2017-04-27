@@ -17,9 +17,10 @@ class checkUriPipe extends BasePipe {
 		while(!empty($stre=array_pop(self::$result_err)))
 		$spider->logger->addInfo($stre);
 	}
-	function fail($spider,$task,\Exception $e){
-
-		self::$result_err[]=$task['url'];
+	public function fail($spider,$task, $e){
+		if(!empty($task['url'])){
+			self::$result_err[]=$task['url'];
+		}
 		return true ;
 		//$spider->logger->addError($e->getMessage());
 	}
