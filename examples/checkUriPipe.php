@@ -27,7 +27,8 @@ class checkUriPipe extends BasePipe {
 	private $_task;
 	function run($spider, $task) {
 		$this->_task=$task ;
-	/*
+	
+		/*
 	 * var_dump(array_keys($task->getData()));
 	 */
         //$spider->logger->addInfo($task['url']."-pipe\n");

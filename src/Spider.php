@@ -111,7 +111,9 @@ class Spider {
         }
     }
 
-
+    public function getTaskCount(){
+    	return count($this->tasks);
+    }
     public function report() {
         $counter = $this->counter;
         $counter[Task::STATUS_PENDING] = isset($counter[Task::STATUS_PENDING])?$counter[Task::STATUS_PENDING]:0 + count($this->tasks);

@@ -21,6 +21,6 @@
         "psr-4": {
             "ddliu\\spider\\": "src/"
         },
-	 "files": ["examples/checkUriPipe.php"]
+	 "files": ["examples/checkUriPipe.php","examples/echoCheckPipe.php"]
     }
 }
