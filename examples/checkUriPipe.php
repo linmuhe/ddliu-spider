@@ -20,7 +20,7 @@ class checkUriPipe extends BasePipe {
 	public function fail($spider,$task, $e){
 		if($e instanceof SpiderRequestException){
 			if(!empty($task['url'])){
-				echo $e->getErrno()."--".$e->getErrmsg()."\n";
+				$spider->logger->addError($e->getErrno()."--".$e->getErrmsg());
 				self::$result_err[]=$task['url']." -- ".$task->parent_title;
 			}
 		}
