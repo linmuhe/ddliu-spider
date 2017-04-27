@@ -1,7 +1,7 @@
 <?php
 
-use ddliu\spider\Pipe\BasePipe;
 namespace ddliu\spider\Pipe;
+use ddliu\spider\Pipe\BasePipe;
 
 class checkUriPipe extends BasePipe {
 	public static $result_succ=array();
@@ -18,10 +18,13 @@ class checkUriPipe extends BasePipe {
 		$spider->logger->addInfo($stre);
 	}
 	public function fail($spider,$task, $e){
-		if(!empty($task['url'])){
-			self::$result_err[]=$task['url'];
+		if($e instanceof SpiderRequestException){
+			if(!empty($task['url'])){
+				echo $e->getErrno()."--".$e->getErrmsg()."\n";
+				self::$result_err[]=$task['url']." -- ".$task->parent_title;
+			}
 		}
-		return true ;
+		return false ;
 		//$spider->logger->addError($e->getMessage());
 	}
 	//private $_task;
@@ -40,7 +43,7 @@ class checkUriPipe extends BasePipe {
 			$url=$task['url'];
 	//		echo get_class($content)."\n";
 			$title=$content->text();
-			self::$result_succ[]="{$title} --- {$url}";
+			self::$result_succ[]="{$title} -- {$url}".$task->parent_title;;
 			$spider->logger->addInfo("{$title} --- {$url} --- is okay ,from ---".$task->parent['url']);
 		});
 	}else{
@@ -51,7 +54,7 @@ class checkUriPipe extends BasePipe {
 		    $title=$context->text();
 		    $spider->logger->addInfo("find {$title} --- ".$url." ");
 		
-		    $task->fork($url);
+		    $task->fork($url,$title);
            	 });
 	}
     }

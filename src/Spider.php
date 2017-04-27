@@ -34,7 +34,7 @@ class Spider {
         $this->startTime = microtime(true);
         $this->pipe = new CombinedPipe();
         $this->options = $options;
-        $this->logger = new Logger(isset($options['name'])?$options['name']:'ddliu.spider');
+        $this->logger = new Logger(isset($options['name'])?$options['name']:'din.spider');
     }
 
     public function setLogger($logger) {

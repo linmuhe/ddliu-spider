@@ -1,8 +1,10 @@
 <?php
-use ddliu\spider\Pipe\BasePipe;
-use ddliu\spider\Pipe\checkUriPipe;
+
 
 namespace ddliu\spider\Pipe;
+
+use ddliu\spider\Pipe\BasePipe;
+use ddliu\spider\Pipe\checkUriPipe;
 
 class echoCheckPipe extends BasePipe{
 
@@ -13,7 +15,7 @@ class echoCheckPipe extends BasePipe{
 
      function run($spider, $task) {
 	$siz=$spider->getTaskCount();
-	if($siz==369){
+	if($siz<=375){
 		$spider->clearTask();
 	}
   	$spider->logger->addInfo($spider->getTaskCount()." size not check ");

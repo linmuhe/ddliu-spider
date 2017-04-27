@@ -20,16 +20,26 @@ class Task implements \ArrayAccess {
     protected $status = self::STATUS_PENDING;
     protected $data;
     public $parent;
+    public $parent_title;
     public $spider;
-    protected $exces=[];//exception from pipe ;
+    private $excei=0;
+    protected $exces=[];
+    //exception from pipe ;
     function putExce($e){
     	$this->exces[]=$e ;
     }
-    function isExce(){
-	    if(0==count($this->exces)){
-	    	return false ;
-	    }
-	    return $this->exces[0];
+
+    function nextExce(){
+        $re=false ;
+
+
+        if ( isset($this->exces[$this->excei++])) {
+           $re =   $this->exces[$this->excei-1];
+            return $re;
+       }else{
+           $this->excei=0  ;
+       }
+        return $re ;
     }
     public function __construct($data) {
         if (is_string($data)) {
@@ -106,9 +116,10 @@ class Task implements \ArrayAccess {
         unset($this->data[$offset]);
     }
 
-    public function fork($data) {
+    public function fork($data,$title='') {
         $task = new Task($data);
         $task->parent = $this;
+        $task->parent_title=$title ;
         $this->spider->addTask($task);
     }
     public function getData(){

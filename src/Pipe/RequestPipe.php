@@ -40,9 +40,12 @@ class RequestPipe extends BasePipe {
         curl_setopt_array($curl, [
             CURLOPT_URL => $task['url'],
             CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYHOST=>2,
+        CURLOPT_SSL_VERIFYPEER=>false,
             CURLOPT_USERAGENT => $this->options['useragent'],
             CURLOPT_TIMEOUT => isset($this->options['timeout'])?$this->options['timeout']:0,
         ]);
+        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1');
 
         foreach ($this->options as $key => $value) {
             // assume it's a curl option
@@ -61,13 +64,13 @@ class RequestPipe extends BasePipe {
         $errno = curl_errno($curl);
         if ($errno) {
             $err = curl_error($curl);
-            throw new \Exception('Request failed: #'.$errno.' '.$err);
+            throw new SpiderRequestException('Request failed: #'.$errno.' '.$err,$errno,$err);
         }
 
         $info = curl_getinfo($curl);
         if ($info['http_code'] != 200) {
             curl_close($curl);
-            throw new \Exception('Request failed with status code: '.$info['http_code']);
+            throw new SpiderRequestException('Request failed with status code: '.$info['http_code']);
         }
 
         curl_close($curl);

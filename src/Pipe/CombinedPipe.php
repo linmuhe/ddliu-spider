@@ -27,31 +27,32 @@ class CombinedPipe extends BasePipe {
     }
 
     public function run($spider, $task) {
+        $excep=false ;
         foreach ($this->pipes as $pipe) {
             if ($task->isEnded()) {
                 break;
             }
-	    try{
-		   // echo "fail ".get_class($pipe) ."-".method_exists($pipe,'fail')==true."\n";
-            	$pipe->run($spider, $task);
-	    }catch(\Exception $e){     
-		    var_dump($pipe);exit;
-	         $echoe=true; 
-	       	if(method_exists($pipe,'fail')){
-			die("xxxxxxx");
-			$echoe = $pipe->fail($spider,$task,$e);	
-		 }
-		if($echoe ){
-			$task->putExce($e);
-		}
-	     }
+            //fixed bug  if exception ,after linked-pipe will not run ;
+            while ($se = $task->nextExce()) {
+                if ($pipe->fail($spider, $task, $se)) {
+                    // default fail is false , if not passed the code ,$excep will throw
+                    //so exception must will be processed
+                    //consume
+                    throw $se;
+                }
+            }
+            if(!$excep){
+                try {
+                    $pipe->run($spider, $task);
+                } catch (\Exception $e) {
+                    $excep=true ;
+                 //   echo $e;
+                    $task->putExce($e);
+                }
+            }
         }
-  	 if(false!==($fire=$task->isExce())){
-		  // is false or first exce
-		  throw $fire ;
-	  }
-	//bug if exception ,after linked-pipe will not run ;
-	
-
+        if($excep && $mustede=$task->nextExce()){
+            throw $mustede;
+        }
     }
 }
