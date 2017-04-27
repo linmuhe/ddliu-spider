@@ -14,10 +14,10 @@ class echoCheckPipe extends BasePipe{
 	//}
 
      function run($spider, $task) {
-	$siz=$spider->getTaskCount();
-	if($siz<=375){
-		$spider->clearTask();
-	}
+		 /*$siz=$spider->getTaskCount();
+         if($siz<=375){
+             $spider->clearTask();
+         }*/
   	$spider->logger->addInfo($spider->getTaskCount()." size not check ");
      }
 }

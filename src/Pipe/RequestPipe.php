@@ -64,13 +64,13 @@ class RequestPipe extends BasePipe {
         $errno = curl_errno($curl);
         if ($errno) {
             $err = curl_error($curl);
-            throw new SpiderRequestException('Request failed: #'.$errno.' '.$err,$errno,$err);
+            throw new \Exception('Request failed: #'.$errno.' '.$err,$errno,$err);
         }
 
         $info = curl_getinfo($curl);
         if ($info['http_code'] != 200) {
             curl_close($curl);
-            throw new SpiderRequestException('Request failed with status code: '.$info['http_code']);
+            throw new SpiderRequestException('Request failed with status code: '.$info['http_code'],$info['http_code'],"");
         }
 
         curl_close($curl);
