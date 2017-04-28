@@ -23,11 +23,7 @@ $spiderx->pipe(new checkUriPipe())->pipe(new echoCheckPipe());
      * })
      */
 $spiderx ->addTask('http://yyliu.top') ;
-try{
 	$spiderx->run();
-}catch(\Exception $e){
-echo $e->getMessage()."\n";
-}
 checkUriPipe::repeat($spiderx);
 $spiderx->report();
 
