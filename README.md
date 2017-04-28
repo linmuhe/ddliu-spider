@@ -5,6 +5,7 @@ A flexible spider in PHP.
 ## Concepts
 
 based from https://github.com/ddliu/spider .Thanks ddliu  
+
 add fail callback，support 301 302 headers.  
 
 
