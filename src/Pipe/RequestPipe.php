@@ -43,7 +43,7 @@ class RequestPipe extends BasePipe {
             CURLOPT_SSL_VERIFYHOST=>2,//support ssl
         CURLOPT_SSL_VERIFYPEER=>false,//support ssl
             CURLOPT_HEADER=>true ,
-            CURLOPT_FOLLOWLOCATION=>true ,//support 301 302 
+            CURLOPT_FOLLOWLOCATION=>true ,//support 301 302
             CURLOPT_USERAGENT => $this->options['useragent'],
             CURLOPT_TIMEOUT => isset($this->options['timeout'])?$this->options['timeout']:0,
         ]);
