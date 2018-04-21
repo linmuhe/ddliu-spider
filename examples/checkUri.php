@@ -13,11 +13,11 @@ use ddliu\spider\Pipe\echoCheckPipe;
 $spiderx =(new Spider())
     ->pipe(function($spider,$task) {
     	static $has=array();
-		if(!array_search($task->url,$has)){
-			$has[] = $task->url ;
+		if(!array_search($task['url'],$has)){
+			$has[] = $task['url'] ;
 			$spider->logger->addInfo(count($has)." size checked");
 		}else{
-			throw new Exception("已经测试过");
+			throw new Exception("{$task['uri']} 已经测试过");
 		}
     })
     ->pipe(new NormalizeUrlPipe())
