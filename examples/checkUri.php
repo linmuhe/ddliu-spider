@@ -11,6 +11,15 @@ use ddliu\spider\Pipe\checkUriPipe;
 use ddliu\spider\Pipe\echoCheckPipe;
 
 $spiderx =(new Spider())
+    ->pipe(function($spider,$task){
+    	static $has=array();
+		if(!array_search($task->url,$has)){
+			$has[] = $task->url ;
+
+		}else{
+			throw new Exception("已经测试过");
+		}
+    })
     ->pipe(new NormalizeUrlPipe())
     ->pipe(new RequestPipe())
     ->pipe(new DomCrawlerPipe());
@@ -22,7 +31,7 @@ $spiderx->pipe(new checkUriPipe())->pipe(new echoCheckPipe());
      *     $spider->logger->addInfo($task['url'].' has '.$issueCount.' commits');
      * })
      */
-$spiderx ->addTask('http://yyliu.top') ;
+$spiderx ->addTask('http://yeyelf.xyz') ;
 	$spiderx->run();
 checkUriPipe::repeat($spiderx);
 $spiderx->report();

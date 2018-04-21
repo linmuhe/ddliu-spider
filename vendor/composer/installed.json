@@ -235,17 +235,17 @@
     },
     {
         "name": "symfony/polyfill-mbstring",
-        "version": "v1.3.0",
-        "version_normalized": "1.3.0.0",
+        "version": "v1.4.0",
+        "version_normalized": "1.4.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-mbstring.git",
-            "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4"
+            "reference": "f29dca382a6485c3cbe6379f0c61230167681937"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/symfony/polyfill-mbstring/e79d363049d1c2128f133a2667e4f4190904f7f4.zip",
-            "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4",
+            "url": "https://files.phpcomposer.com/files/symfony/polyfill-mbstring/f29dca382a6485c3cbe6379f0c61230167681937.zip",
+            "reference": "f29dca382a6485c3cbe6379f0c61230167681937",
             "shasum": ""
         },
         "require": {
@@ -254,11 +254,11 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2016-11-14T01:06:16+00:00",
+        "time": "2017-06-09T14:24:12+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.3-dev"
+                "dev-master": "1.4-dev"
             }
         },
         "installation-source": "dist",
@@ -296,17 +296,17 @@
     },
     {
         "name": "symfony/dom-crawler",
-        "version": "v2.8.19",
-        "version_normalized": "2.8.19.0",
+        "version": "v2.8.22",
+        "version_normalized": "2.8.22.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/dom-crawler.git",
-            "reference": "24b1a3ffa5b64e4f8b1c5f2cdffd16368640704a"
+            "reference": "edfa9c862da6c188b2b29b3f445a9dc81a9e004c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/symfony/dom-crawler/24b1a3ffa5b64e4f8b1c5f2cdffd16368640704a.zip",
-            "reference": "24b1a3ffa5b64e4f8b1c5f2cdffd16368640704a",
+            "url": "https://files.phpcomposer.com/files/symfony/dom-crawler/edfa9c862da6c188b2b29b3f445a9dc81a9e004c.zip",
+            "reference": "edfa9c862da6c188b2b29b3f445a9dc81a9e004c",
             "shasum": ""
         },
         "require": {
@@ -319,7 +319,7 @@
         "suggest": {
             "symfony/css-selector": ""
         },
-        "time": "2017-02-21T08:33:48+00:00",
+        "time": "2017-06-02T05:32:06+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -354,23 +354,23 @@
     },
     {
         "name": "symfony/css-selector",
-        "version": "v2.8.19",
-        "version_normalized": "2.8.19.0",
+        "version": "v2.8.22",
+        "version_normalized": "2.8.22.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/css-selector.git",
-            "reference": "742bd688bd778dde8991ba696cb372570610afcd"
+            "reference": "ba3204654efa779691fac9e948a96b4a7067e4ab"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/symfony/css-selector/742bd688bd778dde8991ba696cb372570610afcd.zip",
-            "reference": "742bd688bd778dde8991ba696cb372570610afcd",
+            "url": "https://files.phpcomposer.com/files/symfony/css-selector/ba3204654efa779691fac9e948a96b4a7067e4ab.zip",
+            "reference": "ba3204654efa779691fac9e948a96b4a7067e4ab",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.9"
         },
-        "time": "2017-02-21T08:33:48+00:00",
+        "time": "2017-05-01T14:31:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
