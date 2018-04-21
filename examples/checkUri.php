@@ -11,11 +11,11 @@ use ddliu\spider\Pipe\checkUriPipe;
 use ddliu\spider\Pipe\echoCheckPipe;
 
 $spiderx =(new Spider())
-    ->pipe(function($spider,$task){
+    ->pipe(function($spider,$task) {
     	static $has=array();
 		if(!array_search($task->url,$has)){
 			$has[] = $task->url ;
-
+			$spider->logger->addInfo(count($has)." size checked");
 		}else{
 			throw new Exception("已经测试过");
 		}
